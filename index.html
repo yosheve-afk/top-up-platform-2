@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RoboTop – Top Up Robux Cepat & Aman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;800&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top__in">
+    <a class="brand" href="#"><span class="brand__mark">R$</span>RoboTop</a>
+    <button class="top__guide-btn" id="btn-show-guide" type="button">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+      Cara Top Up
+    </button>
+    <span class="top__note">Proses rata-rata 5 menit</span>
+  </div>
+</header>
+
+<!-- HERO BANNER -->
+<section class="hero">
+  <div class="wrap hero__content">
+    <h1 class="hero__slogan">Top Up Robux Instan, Murah & Terpercaya</h1>
+    <p class="hero__subtitle">Dapatkan Robux favoritmu dengan proses cepat dan aman!</p>
+  </div>
+</section>
+
+<main class="wrap">
+  <!-- STATE 1: CHECKOUT -->
+  <section id="view-checkout" class="view is-active" aria-labelledby="h-checkout">
+    <div class="intro">
+      <h2 id="h-checkout">Top up Robux, langsung ke akunmu.</h2>
+      <p>Pilih cara pengisian, tentukan jumlah Robux, lalu bayar dengan QRIS.</p>
+    </div>
+
+    <form id="order-form" class="layout" novalidate>
+      <div class="stack">
+        <!-- TOP-UP METHODS -->
+        <div class="card">
+          <h3 class="card__title">Cara pengisian</h3>
+          <div class="tabs" role="tablist">
+            <button type="button" role="tab" class="tab is-active" data-method="username" aria-selected="true"><b>Via Username</b><small>Tercepat &amp; paling mudah</small></button>
+            <button type="button" role="tab" class="tab" data-method="gamepass" aria-selected="false"><b>Via Gamepass</b><small>Tanpa kata sandi</small></button>
+            <button type="button" role="tab" class="tab" data-method="login" aria-selected="false"><b>Via Login</b><small>Akses penuh akun</small></button>
+          </div>
+
+          <div class="panel is-active" data-panel="username">
+            <label class="field"><span>Username Roblox</span>
+              <input type="text" name="u1" placeholder="contoh: BlockyBuilder99" autocomplete="off">
+              <em class="err"></em></label>
+          </div>
+
+          <div class="panel" data-panel="gamepass">
+            <label class="field"><span>Username Roblox</span>
+              <input type="text" name="u2" placeholder="contoh: BlockyBuilder99" autocomplete="off">
+              <em class="err"></em></label>
+            <label class="field"><span>Link Gamepass</span>
+              <input type="url" name="gp" placeholder="https://www.roblox.com/game-pass/…" autocomplete="off">
+              <em class="err"></em></label>
+          </div>
+
+          <div class="panel" data-panel="login">
+            <div class="notice" role="note">
+              <b>Catatan keamanan</b>
+              <p>Data login dipakai sekali untuk mengirim pesananmu dan dihapus setelah selesai. Kami tidak akan membagikannya. Aktifkan verifikasi 2 langkah, lalu ganti kata sandi setelah pesanan selesai.</p>
+            </div>
+            <label class="field"><span>Username Roblox</span>
+              <input type="text" name="u3" placeholder="Username akunmu" autocomplete="off">
+              <em class="err"></em></label>
+            <label class="field"><span>Kata sandi</span>
+              <input type="password" name="pw" placeholder="Kata sandi akun" autocomplete="new-password">
+              <em class="err"></em></label>
+            <label class="field"><span>Backup code</span>
+              <input type="text" name="bc" placeholder="Salah satu kode cadangan 2 langkah" autocomplete="off">
+              <em class="err"></em></label>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card__title">Pilih jumlah Robux</h3>
+          <div id="packs" class="packs" role="radiogroup" aria-label="Paket Robux"></div>
+          <em class="err" id="pack-err"></em>
+        </div>
+
+        <!-- LEADERBOARD - PLACED EXACTLY BELOW TOP-UP METHODS/DENOMINATION -->
+        <div class="card card--leaderboard">
+          <div class="card__header">
+            <h3 class="card__title">🏆 Top Spenders Bulan Ini</h3>
+            <span class="card__badge">Hall of Fame</span>
+          </div>
+          <div id="leaderboard" class="leaderboard"></div>
+        </div>
+      </div>
+
+      <aside class="card summary">
+        <h3 class="card__title">Ringkasan</h3>
+        <dl>
+          <div><dt>Metode</dt><dd id="sum-method">Via Username</dd></div>
+          <div><dt>Paket</dt><dd id="sum-pack">Belum dipilih</dd></div>
+          <div><dt>Biaya layanan</dt><dd>Rp 0</dd></div>
+        </dl>
+        <div class="total"><span>Total bayar</span><strong id="sum-total">Rp 0</strong></div>
+        <button class="btn btn--primary" type="submit">Lanjut ke pembayaran</button>
+        <p class="fine">Dengan melanjutkan, kamu menyetujui syarat layanan.</p>
+      </aside>
+    </form>
+  </section>
+
+  <!-- STATE 2: PAYMENT -->
+  <section id="view-payment" class="view" aria-labelledby="h-pay">
+    <div class="center card pay">
+      <h2 id="h-pay">Scan QRIS untuk membayar</h2>
+      <p class="muted">Buka e-wallet atau m-banking, lalu scan kode di bawah.</p>
+      <div id="qr" class="qr" aria-label="Kode QRIS contoh"></div>
+      <div class="pay__total"><span id="pay-pack"></span><strong id="pay-total"></strong></div>
+      <div class="timer">Berlaku <b id="timer">15:00</b></div>
+      <button id="btn-paid" class="btn btn--accent" type="button">Simulasi: Sudah bayar</button>
+      <button id="btn-back" class="btn btn--ghost" type="button">Ubah pesanan</button>
+    </div>
+  </section>
+
+  <!-- STATE 3: PROCESSING -->
+  <section id="view-processing" class="view" aria-live="polite">
+    <div class="center card status">
+      <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <h2>Pesanan sedang di proses...</h2>
+      <p class="muted">Pembayaran diterima. Admin sedang mengirim Robux ke akunmu, mohon jangan tutup halaman ini.</p>
+      <p class="order-id">No. pesanan <b id="oid-proc"></b></p>
+    </div>
+  </section>
+
+  <!-- STATE 4: SUCCESS -->
+  <section id="view-success" class="view" aria-live="polite">
+    <div class="center card status status--ok">
+      <div class="coin" aria-hidden="true">R$</div>
+      <h2>Robux terkirim!</h2>
+      <p class="muted"><b id="ok-pack"></b> sudah masuk ke akun <b id="ok-user"></b>.</p>
+      <p class="order-id">No. pesanan <b id="oid-ok"></b></p>
+      <button id="btn-new" class="btn btn--primary" type="button">Top up lagi</button>
+    </div>
+  </section>
+</main>
+
+<!-- ADMIN SIMULATION -->
+<aside id="admin" class="admin" aria-label="Panel admin simulasi">
+  <button class="admin__head" type="button" id="admin-toggle" aria-expanded="true">
+    <span>Panel Admin (simulasi)</span><span class="dot" id="admin-dot"></span>
+  </button>
+  <div class="admin__body" id="admin-body">
+    <p id="admin-empty" class="admin__empty">Belum ada pesanan masuk.</p>
+    <div id="admin-order" class="admin__order" hidden>
+      <b>New Top-Up Order Pending</b>
+      <p id="admin-detail"></p>
+      <button id="btn-approve" class="btn btn--small" type="button">Admin: Send Robux &amp; Approve Order</button>
+    </div>
+  </div>
+</aside>
+
+<script src="script.js"></script>
+</body>
+</html>
